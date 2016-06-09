@@ -6,7 +6,7 @@ import ProjectCore from 'project-core'
 const $ = new ProjectCore();
 
 $.init.add((done)=>{
-    // $.config.load(path.resolve(__dirname, 'config.js'));
+    $.config.load(path.resolve(__dirname, '../config', 'config.js'));
     const env = process.env.NODE_ENV || null;
     if(env){
         $.config.load(path.resolve(__dirname, '../config', env + '.js'));
