@@ -22,6 +22,14 @@ $.init.load(path.resolve(__dirname, 'init', 'mongodb.js'));
 // 加载Models
 $.init.load(path.resolve(__dirname, 'models'));
 
+// init express
+$.init.load(path.resolve(__dirname, 'init', 'express.js'));
+
+// init routes
+$.init.load(path.resolve(__dirname, 'routes'));
+
+
+
 
 // 初始化
 $.init((err) => {
@@ -32,12 +40,12 @@ $.init((err) => {
         console.log('inited [env=%s]', $.env);
         console.log($.config.get('db.mongodb'));
     }
-
-    const item = new $.model.User({
-        name: 'lin',
-        password: '123456',
-        nickname: 'qiqi'
-    });
-    item.save(console.log);
+    //
+    // const item = new $.model.User({
+    //     name: 'lin',
+    //     password: '123456',
+    //     nickname: 'qiqi'
+    // });
+    // item.save(console.log);
 
 });
