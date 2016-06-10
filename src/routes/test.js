@@ -4,8 +4,8 @@ var errMsg = 'something wrong happend: ';
 
 function format(users) {
     var result = '';
-    users.forEach(function (user) {
-        result += '    _id: ' + user._id + ', name: ' + user.name + ', nickname:' + user.nickname + '\n';
+    users.forEach(function (user, index) {
+        result += '    '+ index + ' _id: ' + user._id + ', name: ' + user.name + ', nickname:' + user.nickname + '\n';
     });
     return result;
 }
@@ -25,10 +25,18 @@ module.exports = function (done) {
             }
         });
     });
-    
+
     $.router.get('/user/add', function (req, res, next) {
+        res.redirect('/user/add/0');
+    });
+
+    $.router.get('/user/add/:name', function (req, res, next) {
+        var name = req.params.name;
+        if(!name || name == '0'){
+            name = 'lin'+new Date().getTime();
+        }
         const item = new $.model.User({
-            name: 'lin'+new Date().getTime(),
+            name: name,
             password: '123456',
             nickname: 'qiqi'
         });
