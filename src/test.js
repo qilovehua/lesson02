@@ -12,7 +12,7 @@
 //     name: 'hello',
 // }, console.log);
 
-$.method('user.update').call({
-    name: 'hello',
-    nickname: 'hello world',
-}, console.log);
+// $.method('user.update').call({
+//     name: 'hello',
+//     nickname: 'hello world',
+// }, console.log);
