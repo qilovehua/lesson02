@@ -14,13 +14,22 @@ $.createDebug = function (name) {
 };
 const debug = $.createDebug('server');
 
+function configLoad(dir, filename) {
+    try {
+        $.config.load(path.resolve(__dirname, dir, filename));
+    } catch (err){
+        throw new Error('Something wrong in file '+dir+'/'+filename+': ' + err);
+    }
+}
+
 // 加载配置文件
 $.init.add((done) => {
     $.config.load(path.resolve(__dirname, 'config.js'));
     const env = process.env.NODE_ENV || null;
     if (env) {
         debug('load env', env);
-        $.config.load(path.resolve(__dirname, 'config', env + '.js'));
+        configLoad('config', env+'.js');
+        // $.config.load(path.resolve(__dirname, 'config', env + '.js'));
     }
     $.env = env;
     done();
