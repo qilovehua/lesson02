@@ -1,5 +1,7 @@
 'use strict';
 
+require('babel-polyfill');
+
 import path from 'path';
 import ProjectCore from 'project-core';
 import createDebug from 'debug';
@@ -30,6 +32,9 @@ $.init.load(path.resolve(__dirname, 'init', 'mongodb.js'));
 // 加载Models
 $.init.load(path.resolve(__dirname, 'models'));
 
+// 加载methods
+$.init.load(path.resolve(__dirname, 'methods'));
+
 // init express
 $.init.load(path.resolve(__dirname, 'init', 'express.js'));
 
@@ -55,5 +60,7 @@ $.init((err) => {
     //     nickname: 'qiqi'
     // });
     // item.save(console.log);
+
+    require('./test');
 
 });
