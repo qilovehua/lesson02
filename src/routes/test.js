@@ -51,7 +51,7 @@ module.exports = function (done) {
             if(err){
                 res.end(errMsg + err);
             }else {
-                res.end('add user id: ' + user._id + ', name: ' + user.name);
+                res.end('get user id: ' + user._id + ', name: ' + user.name);
             }
         });
     });

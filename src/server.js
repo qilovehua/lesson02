@@ -47,6 +47,9 @@ $.init.load(path.resolve(__dirname, 'methods'));
 // init express
 $.init.load(path.resolve(__dirname, 'init', 'express.js'));
 
+// init middlewares
+$.init.load(path.resolve(__dirname, 'middlewares'));
+
 // init routes
 $.init.load(path.resolve(__dirname, 'routes'));
 
