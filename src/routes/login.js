@@ -25,7 +25,7 @@ module.exports = function (done) {
         req.session.user = user;
         req.session.logout_token = $.utils.randomString(20);
 
-        res.apiSuccess({token: req.session.logout_token});
+        res.apiSuccess({token: req.session.logout_token, id: user._id});
     });
 
     $.router.get('/api/logout', async function (req, res, next) {
