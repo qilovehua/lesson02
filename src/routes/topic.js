@@ -5,6 +5,22 @@ module.exports = function (done) {
 
     $.router.post('/api/topic/add', $.checkLogin,  async function (req, res, next) {
 
+        var curTime = new Date();
+        var postTime = req.session.postTime || [];
+
+        if(postTime.length == 2) {
+            if(curTime - postTime[0] < 3600000){
+                return next(new Error('post limit 2 in an hour'));
+            }else{
+                postTime.push(curTime);
+                postTime = postTime.slice(1);
+            }
+        }else{
+            postTime.push(curTime);
+        }
+        req.session.postTime = postTime;
+
+
         req.body.authorId = req.session.user._id;
 	console.log('====', req.body);
 
