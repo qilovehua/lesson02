@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = function (done) {
 
     $.router.post('/api/login_user', async function (req, res, next) {
@@ -36,6 +35,15 @@ module.exports = function (done) {
 
     $.router.post('/api/signup', async function (req, res, next) {
         const user = await $.method('user.add').call(req.body);
+        if(user){
+            // send mail
+            $.sendMail(req.body.email, 'welcome to ...', `welcome, 注冊成功 554 DT:SPM 发送的邮件内容包含了未被许可的信息，或被系统识别为垃圾邮件。请检查是否有用户发送病毒或者垃圾邮件 554 DT:SPM 发送的邮件内容包含了未被许可的信息，或被系统识别为垃圾邮件。请检查是否有用户发送病毒或者垃圾邮件 `, (result)=>{
+                console.log(result);
+                if(result.success){
+                    // console.log('send success');
+                }
+            })
+        }
         res.apiSuccess({user: user});
     });
 

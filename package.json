@@ -36,6 +36,7 @@
     "lei-utils": "^2.1.0",
     "mongoose": "^4.4.20",
     "multiparty": "^4.1.2",
+    "nodemailer": "^0.7.1",
     "project-core": "^0.1.3",
     "serve-static": "^1.11.0",
     "validator": "^5.4.0"
