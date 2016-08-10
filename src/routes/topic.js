@@ -34,7 +34,6 @@ module.exports = function (done) {
 
     });
 
-
     $.router.get('/api/topic/list', $.checkLogin, async function (req, res, next) {
 
         if ('tags' in req.query) {

@@ -38,8 +38,10 @@ module.exports = function () {
             query._id = params._id;
         }else if(params.name){
             query.name = params.name;
-        }else if (params.email){
+        }else if (params.email) {
             query.email = params.email;
+        }else if(params.githubUsername){
+            query.githubUsername = params.githubUsername;
         }else{
             throw new Error('missing parameter _id|name|email');
         }
