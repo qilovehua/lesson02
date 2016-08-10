@@ -12,7 +12,8 @@ module.exports = function (done) {
         email: {type: String, unique: true},
         password: {type: String},
         nickname: {type: String},
-        about: {type: String}
+        about: {type: String},
+        github: {type: String}
     });
 
     $.mongodb.model('User', User);

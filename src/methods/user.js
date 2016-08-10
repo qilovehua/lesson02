@@ -28,7 +28,7 @@ module.exports = function () {
     });
 
     $.method('user.get').check({
-        _id: {validate: (v)=>validator.isMongoId(v)},
+        _id: {validate: (v)=>validator.isMongoId(String(v))},
         name: {validate: (v)=>validator.isLength(v, {min: 4, max: 20}) && /^[a-zA-Z]/.test(v)},
         email: {alidate: (v)=>validator.isEmail(v)},
     });
@@ -40,17 +40,17 @@ module.exports = function () {
             query.name = params.name;
         }else if (params.email) {
             query.email = params.email;
-        }else if(params.githubUsername){
-            query.githubUsername = params.githubUsername;
+        }else if(params.github){
+            query.github= params.github;
         }else{
-            throw new Error('missing parameter _id|name|email');
+            throw new Error('missing parameter _id|name|email|github');
         }
 
         return $.model.User.findOne(query);
     });
 
     $.method('user.update').check({
-        _id: {validate: (v)=>validator.isMongoId(v)},
+        _id: {validate: (v)=>validator.isMongoId(String(v))},
         name: {validate: (v)=>validator.isLength(v, {min: 4, max: 20}) && /^[a-zA-Z]/.test(v)},
         email: {validate: (v)=>validator.isEmail(v)},
     });
@@ -59,6 +59,7 @@ module.exports = function () {
         if(!user){
             throw new Error('user does not exists');
         }
+	console.log(user);
         
         const update = {};
         if(params.name && user.name != params.name){
@@ -76,6 +77,10 @@ module.exports = function () {
         if(params.about){
             update.about = params.about;
         }
+	if(params.github){
+            update.github = params.github;
+        }
+	console.log('====', update);
 
         return $.model.User.update({_id: user._id}, {$set: update});
     });
