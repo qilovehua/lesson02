@@ -13,6 +13,7 @@ module.exports = function (done) {
     debug('initing express ... ');
 
     const app = express();
+    $.express = app;
 
     app.use(bodyParse.json());
     app.use(bodyParse.urlencoded({extended: false}));
@@ -53,9 +54,13 @@ module.exports = function (done) {
     //     res.json({error: err.toString()});
     // });
 
-    app.listen($.config.get('web.port'), (err)=>{
-        done(err);
-    });
+    if ($.config.get('web.port')) {
+        app.listen($.config.get('web.port'), (err)=> {
+            done(err);
+        });
+    }else{
+        done();
+    }
 
     done();
 
