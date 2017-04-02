@@ -1,4 +1,4 @@
-node使用mongoose CRUD
+node使用Express, mongoose CRUD
 
 默认端口8000
 http://localhost:8000
